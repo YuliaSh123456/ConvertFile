@@ -9,13 +9,15 @@ import patoolib
 class FilesFamily(object):
 
     def __init__(self, list_of_formats):
+        """
+            Args:
+                list_of_formats (list[str]): List of formats that the class supports, represented by
+                                             strings of file suffixes
+        """
 
-        # List of formats that the class supports, represented by
-        # strings of file suffixes
         self.list_of_formats = list_of_formats
 
     def _create_tar_family_archive(self, file_path, suffix_str, w_mode):
-
         tgz_path = file_path.split(".")[0] + suffix_str
         out_dir = file_path.split(".")[0]
         out_dir = out_dir.split("\\")
@@ -51,9 +53,7 @@ class FilesFamily(object):
         if dest_format == "rar":
             patoolib.create_archive(file_path.split(".")[0]+".rar", (file_path.split(".")[0],))
 
-
     def is_format_compatible(self, format_name):
-
         return format_name in self.list_of_formats
 
 def build_parser():
